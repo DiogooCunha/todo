@@ -1,0 +1,15 @@
+import { type Task } from "../entities/Task.js";
+import type { TaskRepository } from "../repositories/TaskRepository.js";
+
+export class TaskService {
+  constructor(private repo: TaskRepository) {}
+
+  createTask(title: string, description: string, priority: string): Task {
+    const task = this.repo.create(title, description, priority);
+    return task;
+  }
+
+  listTasks() {
+    return this.repo.findAll();
+  }
+}
