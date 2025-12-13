@@ -21,6 +21,10 @@ export class TaskService {
     return this.repo.completeById(id);
   }
 
+  deleteTask(id: number) {
+    return this.repo.delete(id);
+  }
+
   filterByPriority(priority: string) {
     return this.repo.filterByPriority(priority);
   }

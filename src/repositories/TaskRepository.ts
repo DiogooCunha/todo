@@ -10,6 +10,11 @@ export class TaskRepository {
     return task;
   }
 
+  delete(id: number) {
+    const index = this.tasks.findIndex((t) => t.id === id);
+    return this.tasks.splice(index, 1)
+  }
+
   findAll() {
     return this.tasks;
   }

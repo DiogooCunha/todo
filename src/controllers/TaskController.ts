@@ -47,6 +47,17 @@ export class TaskController {
     }
   }
 
+  public static deleteTask(req: Request, res: Response) {
+    const id = Number(req.params.id);
+
+    try {
+      const task = service.deleteTask(id);
+      return res.status(200).json({ message: "Task deleted" });
+    } catch (error: any) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+  }
+
   public static filterByPriority(req: Request, res: Response) {
     const priority = req.params.priority;
     if (!priority) {
