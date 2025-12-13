@@ -9,19 +9,41 @@ export class TaskController {
     try {
       const { title, description, priority } = req.body;
 
-      const task = service.createTask(
-        title,
-        description,
-        priority,
-      );
+      const task = service.createTask(title, description, priority);
       return res.status(201).json(task);
     } catch (error: any) {
       return res.status(400).json({ error: error.message });
     }
   }
 
-  public static list(req: Request, res: Response) {
+  public static listAll(req: Request, res: Response) {
     const tasks = service.listTasks();
-    return res.json(tasks);
+    return res.status(200).json(tasks);
+  }
+
+  public static listById(req: Request, res: Response) {
+    const id = Number(req.params.id);
+
+    if (Number.isNaN(id)) {
+      return res.status(400).json({ error: "Invalid id" });
+    }
+
+    try {
+      const task = service.listById(id);
+      return res.status(200).json(task);
+    } catch (error) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+  }
+
+  public static completeTask(req: Request, res: Response) {
+    const id = Number(req.params.id);
+
+    try {
+      const task = service.completeTask(id);
+      return res.status(200).json(task);
+    } catch (error) {
+      return res.status(404).json({ error: "Task not found" });
+    }
   }
 }

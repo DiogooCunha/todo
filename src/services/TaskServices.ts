@@ -12,4 +12,12 @@ export class TaskService {
   listTasks() {
     return this.repo.findAll();
   }
+
+  listById(id: number) {
+    return this.repo.findById(id);
+  }
+
+  completeTask(id: number) {
+    return this.repo.completeById(id);
+  }
 }

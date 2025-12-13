@@ -17,4 +17,14 @@ export class TaskRepository {
   findById(id: number) {
     return this.tasks.find((t) => t.id === id);
   }
+
+  completeById(id: number) {
+    const task = this.tasks.find((t) => t.id === id);
+    if (!task) {
+      throw new Error("Task not found.");
+    }
+
+    task.complete();
+    return task;
+  }
 }
