@@ -31,7 +31,7 @@ export class TaskController {
     try {
       const task = service.listById(id);
       return res.status(200).json(task);
-    } catch (error) {
+    } catch (error: any) {
       return res.status(404).json({ error: "Task not found" });
     }
   }
@@ -42,8 +42,24 @@ export class TaskController {
     try {
       const task = service.completeTask(id);
       return res.status(200).json(task);
-    } catch (error) {
+    } catch (error: any) {
       return res.status(404).json({ error: "Task not found" });
+    }
+  }
+
+  public static filterByPriority(req: Request, res: Response) {
+    const priority = req.params.priority;
+    if (!priority) {
+      return res.status(400).json({
+        error: "Priority parameter is required",
+      });
+    }
+
+    try {
+      const tasks = service.filterByPriority(priority);
+      return res.status(200).json(tasks);
+    } catch (error: any) {
+      return res.status(400).json({ error: error.message });
     }
   }
 }

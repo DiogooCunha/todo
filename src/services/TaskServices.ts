@@ -20,4 +20,8 @@ export class TaskService {
   completeTask(id: number) {
     return this.repo.completeById(id);
   }
+
+  filterByPriority(priority: string) {
+    return this.repo.filterByPriority(priority);
+  }
 }

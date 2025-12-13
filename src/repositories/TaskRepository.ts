@@ -23,8 +23,11 @@ export class TaskRepository {
     if (!task) {
       throw new Error("Task not found.");
     }
-
     task.complete();
     return task;
+  }
+
+  filterByPriority(priority: string) {
+    return this.tasks.find((t) => t.priority === priority);
   }
 }
