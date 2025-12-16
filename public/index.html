@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo POO</title>
+  </head>
+  <body>
+    <div>
+      <ul id="list"></ul>
+    </div>
+
+    <div>
+      <form onsubmit="newTask(e)">
+        <input type="text" name="title" id="title" placeholder="Título" />
+        <input type="text" name="description" id="description" placeholder="Descriçâo"/>
+        <select name="priority" id="priority">
+            <option value="low">LOW</option>
+            <option value="medium">MEDIUM</option>                        
+            <option value="high">HIGH</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
